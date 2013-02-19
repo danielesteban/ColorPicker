@@ -21,16 +21,6 @@ bool sampling = 0;
 
 unsigned long lastSample = 0;
 
-void output(bool off = 0) {
-    Serial.write(SERIAL_FUNC_COLOR);
-    for(byte x=0; x<3; x++) Serial.write(color[x]);
-        //DEBUG
-        //if(x > 0) Serial.print(",");
-        //Serial.print(color[x]);
-    //}
-    //Serial.println(" ");
-}
-
 void loop(void) {
     buttons.read();
     analogInputs.read();
@@ -67,7 +57,8 @@ void loop(void) {
     sensorColor++;
     if(sensorColor == 3) {
         sensorColor = 0;
-        output();
+        Serial.write(SERIAL_FUNC_COLOR);
+        for(byte x=0; x<3; x++) Serial.write(color[x]);
     }
     digitalWrite(sensor[sensorColor], LOW);
 }
@@ -78,7 +69,6 @@ void buttonUp(byte pin) {
             sampling = 0;
             digitalWrite(sensor[sensorColor], HIGH);
             sensorColor = 2;
-            output();
     }
 }
 
@@ -88,11 +78,11 @@ void buttonDown(byte pin) {
             sampling = 1;
         break;
         case Button2Pin:
-            /*for(byte x=0; x<5; x++) {
-                output(1);
-                delay(250 - (50 * x));
-                output();
-                delay(250 - (50 * x));
+            for(byte x=0; x<10; x++) {
+                digitalWrite(LedPin, HIGH);
+                delay(250 - (25 * x));
+                digitalWrite(LedPin, LOW);
+                delay(250 - (25 * x));
             }
 
             int c = (int) EEPROM.read(0) + (EEPROM.read(1) << 8),
@@ -101,7 +91,7 @@ void buttonDown(byte pin) {
             for(int y=0; y<3; y++) EEPROM.write(x + y, color[y]);
             c++;
             EEPROM.write(0, lowByte(c));
-            EEPROM.write(1, highByte(c));*/
+            EEPROM.write(1, highByte(c));
         break;
     }
 }
