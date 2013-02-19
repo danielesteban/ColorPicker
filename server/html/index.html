@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<title>Color Picker</title>
+		<link rel="shortcut icon" href="favicon.png" type="image/png" />
+		<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon" />
+		<script type="text/javascript" src="main.js"></script>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			body {
+				font-family: Helvetica, Arial;
+				font-size: 12px;
+				line-height: 1.28em;
+				background: #d0d0d0;
+				padding: 20px;
+			}
+			div.box {
+				background: #fafafa;
+				border: 1px solid #808080;
+				padding: 10px;
+			}
+			#options {
+				float: right;
+				width: 258px;
+			}
+			button {
+				padding: 10px;
+				margin: 5px;
+			}
+			label {
+				margin: 0 10px 0 0;
+			}
+			input[type="range"] {
+				position: relative;
+				top: 4px;
+				width: 190px;
+			}
+			#dump {
+				padding: 10px 0;
+			}
+			#dump a {
+				display: block;
+				padding: 0 0 5px 0;
+			}
+			#dump a:hover {
+				background: #66F;
+				color: #fafafa;
+				cursor: pointer;
+			}
+			h1 {
+				text-align: center;
+				margin: 0 0 10px 0;
+			}
+			#color {
+				margin: 0 298px 0 0;
+				padding: 20px 0;
+			}
+			#color div {
+				margin: 0 auto;
+				width: 400px;
+				height: 400px;
+				position: relative;
+				background: #000;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="options" class="box">
+			<label>Precision</label><input type="range" min="0" max="2" value="1" onchange="req('precision', this.value)" /><br/>
+			<button onclick="req('dump')" style="width: 135px">Dump EEPROM</button>
+			<button onclick="if(confirm('Sure?')) req('reset')">Reset EEPROM</button>
+			<div id="dump"></div>
+		</div>
+		<div id="color" class="box"><h1><span></span> <button id="clipboard">Copy to clipboard</button></h1><div></div></div>
+	</body>
+</html>

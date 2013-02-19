@@ -1,0 +1,15 @@
+{
+	"name" : "ColorPicker",
+	"description" : "A node.js server for ColorPicker",
+	"version" : "0.0.1",
+	"dependencies" : {
+		"node-static" : "0.6.7",
+		"socket.io" : "0.9.13",
+		"validator" : "0.4.21",
+		"serialport" : "1.0.8"
+	},
+	"scripts" : {
+		"start" : "node server.js"
+	},
+	"engines" : { "node" : ">=0.8.17" }
+}
